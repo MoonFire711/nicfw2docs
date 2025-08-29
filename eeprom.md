@@ -1,10 +1,13 @@
 # EEPROM Layout
 
-The EEPROM has 8k of space addressed from `0x0000` to `0x1FFF`. All multi-byte values are little-endian.
+The EEPROM has 8k of space addressed from `0x0000` to `0x1FFF`. 
+All multi-byte values are LITTLE-Endian for V2.0X codeplugs.
+All multi-byte values are BIG-Endian for V2.5X codeplugs.
 
 For details on data types, consult the data structure document for the data type.
 
 ## Layout
+(... represents unused space and should be padded with filler bytes)
 
 ```c
 struct {
@@ -24,6 +27,7 @@ struct {
         char sequenceLabel[8]; // null terminated
     } dtmfPresets[20];
     ...
+    int8_t xtal671; // 0x1DFB
     uint8_t maxPowerWattsUHF; // 0x1DFC (0.1W units)
     uint8_t maxPowerSettingUHF; // 0x1DFD
     uint8_t maxPowerWattsVHF; // 0x1DFE (0.1W units)
